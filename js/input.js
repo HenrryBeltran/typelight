@@ -55,7 +55,7 @@ export function setInputListeners(
     caretElement.classList.remove("focus");
   });
 
-  if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+  if (/Android/i.test(navigator.userAgent)) {
     inputElement.addEventListener("beforeinput", (event) => {
       if (event.inputType === "deleteContentBackward") {
         event.preventDefault();

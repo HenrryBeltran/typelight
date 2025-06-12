@@ -1,0 +1,11 @@
+{
+  "name": "typelight",
+  "module": "index.ts",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "prettier": "^3.5.3",
+    "vite": "^6.3.5"
+  },
+  "private": true,
+  "type": "module"
+}
