@@ -1,16 +1,9 @@
 node_modules/
 
-dist/
-build/
-out/
-
 .DS_Store
-Thumbs.db
 
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+bun.lock
 
 .env
 .env.* 
@@ -19,11 +12,8 @@ jspm_packages/
 
 .vscode/
 .idea/
-*.sublime-project
-*.sublime-workspace
 
 *.local
 *.cache
 .cache/
-coverage/
 
