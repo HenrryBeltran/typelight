@@ -3,9 +3,12 @@
   "module": "index.ts",
   "devDependencies": {
     "@types/bun": "latest",
-    "prettier": "^3.5.3",
-    "vite": "^6.3.5"
+    "prettier": "^3.5.3"
   },
   "private": true,
+  "scripts": {
+    "build": "bun run build.js",
+    "serve": "bunx serve dist"
+  },
   "type": "module"
 }
