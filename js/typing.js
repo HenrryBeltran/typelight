@@ -1,7 +1,16 @@
 import { simulateWordsFromSpace } from "./cursor.js";
-import { getAccuracy, getCorrectWords, getRawWPM, getWPM } from "./helpers.js";
+import {
+  displayCounter,
+  getAccuracy,
+  getCorrectWords,
+  getData,
+  getRawWPM,
+  getWPM,
+  saveTypingStats,
+} from "./helpers.js";
 import { setInputHandlers, setInputListeners } from "./input.js";
 import { generateNewWords, renderCursor, repositionInputElement } from "./render.js";
+import { removeSkeleton, setSkeleton } from "./skeleton.js";
 
 // Init data
 const counter = document.querySelector("#counter");
@@ -49,8 +58,10 @@ const lastKey = {
 const initialAmountOfWords = 150;
 const increaseWordsBy = 150;
 
-const res = await fetch("/words.json");
-const data = await res.json();
+// Set some ui feedback
+setSkeleton(words);
+
+const data = await getData().finally(removeSkeleton);
 
 // Setup the test
 generateNewWords(data, initialAmountOfWords, cursorState, words);
@@ -101,27 +112,3 @@ testState.startTest = () => {
     window.location.href = `${window.location.origin}/results`;
   }, 60_000);
 };
-
-function saveTypingStats(stat) {
-  const maxRecords = 10_000;
-  const stats = JSON.parse(localStorage.getItem("typingStats") || "[]");
-
-  if (stats.length >= maxRecords) {
-    stats.shift();
-  }
-
-  stats.push(stat);
-  localStorage.setItem("typingStats", JSON.stringify(stats));
-}
-
-async function displayCounter() {
-  for (let i = 60; i > 0; i--) {
-    if (testState.isRunning) {
-      counter.innerText = i.toString();
-      await new Promise((resolve) => setTimeout(resolve, 1_000));
-    } else {
-      return;
-    }
-  }
-  counter.innerText = "0";
-}

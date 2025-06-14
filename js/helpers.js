@@ -1,37 +1,30 @@
-export function getCombo(event) {
-  let combo = "";
-
-  if (event.ctrlKey) combo += "control";
-  if (event.metaKey) combo += "meta";
-  if (event.shiftKey) combo += "shift";
-  if (event.altKey) combo += "alt";
-  if (event.key === "ArrowLeft") event.preventDefault();
-  if (event.key === "ArrowRight") event.preventDefault();
-  if (event.key === "Backspace") {
-    if (combo.length > 1) {
-      event.preventDefault();
-      return combo + "Backspace";
-    }
-    return combo + "backspace";
-  }
-  if (event.key === " ") {
-    event.preventDefault();
-    return "space";
-  }
-
-  return combo + event.key;
+export async function getData() {
+  const res = await fetch("/words.json");
+  return await res.json();
 }
 
-export function getCorrectWords(words, wordsLength) {
-  let correctWords = 0;
-  for (let i = 0; i < wordsLength; i++) {
-    const word = words.children[i];
-    const classes = word.classList;
-    if (classes.contains("completed") && !classes.contains("wrong")) {
-      correctWords++;
+export function saveTypingStats(stat) {
+  const maxRecords = 10_000;
+  const stats = JSON.parse(localStorage.getItem("typingStats") || "[]");
+
+  if (stats.length >= maxRecords) {
+    stats.shift();
+  }
+
+  stats.push(stat);
+  localStorage.setItem("typingStats", JSON.stringify(stats));
+}
+
+export async function displayCounter() {
+  for (let i = 60; i > 0; i--) {
+    if (testState.isRunning) {
+      counter.innerText = i.toString();
+      await new Promise((resolve) => setTimeout(resolve, 1_000));
+    } else {
+      return;
     }
   }
-  return correctWords;
+  counter.innerText = "0";
 }
 
 export function restartTest(cursorState, testState, listOfWords, words, counter, inputElement, generateNewWords) {
@@ -96,6 +89,42 @@ export function formatTimestamp(timestamp) {
   }
 
   return `${map.month} ${map.day}, ${map.weekday} - ${map.hour}:${map.minute}`;
+}
+
+export function getCombo(event) {
+  let combo = "";
+
+  if (event.ctrlKey) combo += "control";
+  if (event.metaKey) combo += "meta";
+  if (event.shiftKey) combo += "shift";
+  if (event.altKey) combo += "alt";
+  if (event.key === "ArrowLeft") event.preventDefault();
+  if (event.key === "ArrowRight") event.preventDefault();
+  if (event.key === "Backspace") {
+    if (combo.length > 1) {
+      event.preventDefault();
+      return combo + "Backspace";
+    }
+    return combo + "backspace";
+  }
+  if (event.key === " ") {
+    event.preventDefault();
+    return "space";
+  }
+
+  return combo + event.key;
+}
+
+export function getCorrectWords(words, wordsLength) {
+  let correctWords = 0;
+  for (let i = 0; i < wordsLength; i++) {
+    const word = words.children[i];
+    const classes = word.classList;
+    if (classes.contains("completed") && !classes.contains("wrong")) {
+      correctWords++;
+    }
+  }
+  return correctWords;
 }
 
 // Timestamp formatter - DEBUGGING PORPOSES

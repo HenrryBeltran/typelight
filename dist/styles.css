@@ -259,6 +259,8 @@
   --color-black: #000;
   --color-white: #fff;
 
+  --animate-pulse: pulse 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
   color: var(--color-neutral-800);
 }
 
@@ -773,4 +775,11 @@ footer a:hover {
   text-decoration: underline;
   text-decoration-color: var(--color-neutral-800);
   text-underline-offset: 3px;
+}
+
+/* GLOBAL ANIMATIONS */
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
 }
