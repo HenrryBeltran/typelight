@@ -129,3 +129,7 @@ export function generateNewWords(data, wordsAmount, cursorState, words, isInitia
     cursorState.numberOfNewWords += wordsAmount;
   }
 }
+
+export function removeSkeleton() {
+  document.querySelector("#skeleton").remove();
+}

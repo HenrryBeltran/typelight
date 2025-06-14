@@ -9,8 +9,7 @@ import {
   saveTypingStats,
 } from "./helpers.js";
 import { setInputHandlers, setInputListeners } from "./input.js";
-import { generateNewWords, renderCursor, repositionInputElement } from "./render.js";
-import { removeSkeleton, setSkeleton } from "./skeleton.js";
+import { generateNewWords, removeSkeleton, renderCursor, repositionInputElement } from "./render.js";
 
 // Init data
 const counter = document.querySelector("#counter");
@@ -57,9 +56,6 @@ const lastKey = {
 };
 const initialAmountOfWords = 150;
 const increaseWordsBy = 150;
-
-// Set some ui feedback
-setSkeleton(words);
 
 const data = await getData().finally(removeSkeleton);
 
