@@ -62,10 +62,11 @@ export function renderOnDeleteCharacter(cursorState, words) {
   if (!letterElement) return;
 
   if (letterElement.classList.contains("extra")) {
+    currentWord.classList.remove("left");
     letterElement.remove();
     return;
   }
-  currentWord.classList.remove("completed");
+  currentWord.classList.remove("completed", "left");
   letterElement.classList.remove("typed", "wrong");
 }
 
@@ -79,9 +80,11 @@ export function renderOnDeleteWord(cursorState, words, inputElement) {
   for (let i = letters.length - 1; i >= 0; i--) {
     const letterElement = letters[i];
     if (letterElement.classList.contains("extra")) {
+      currentWord.classList.remove("left");
       letterElement.remove();
       continue;
     }
+    currentWord.classList.remove("completed", "wrong", "left");
     letterElement.classList.remove("typed", "wrong");
   }
 }
