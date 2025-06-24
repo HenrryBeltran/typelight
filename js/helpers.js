@@ -15,7 +15,7 @@ export function saveTypingStats(stat) {
   localStorage.setItem("typingStats", JSON.stringify(stats));
 }
 
-export async function displayCounter() {
+export async function displayCounter(testState, counter) {
   for (let i = 60; i > 0; i--) {
     if (testState.isRunning) {
       counter.innerText = i.toString();

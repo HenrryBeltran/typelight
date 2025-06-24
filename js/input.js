@@ -16,6 +16,7 @@ import {
   renderNewCharacter,
   renderOnDeleteCharacter,
   renderOnDeleteWord,
+  renderOnJumpAfterWrongTyping,
   renderWordsLineHeight,
   repositionInputElement,
 } from "./render.js";
@@ -141,6 +142,7 @@ export function setInputHandlers(data, inputHandlers, words, inputElement, listO
     jumpCursorToNextWord(cursorState, words);
     setCurrentLineIndex(cursorState, listOfWords, true);
 
+    renderOnJumpAfterWrongTyping(cursorState, words);
     renderWordsLineHeight(cursorState, words);
 
     const wordsDistance = cursorState.numberOfWords * 0.5;

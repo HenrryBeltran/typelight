@@ -478,9 +478,17 @@ section.test {
   padding: 0em 0.5em;
 }
 
+.word.left {
+  text-decoration: underline;
+  text-decoration-color: var(--color-red-500);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+}
+
 letter {
   font-family: "Roboto Mono", monospace;
   font-size: 1.75rem;
+  font-weight: 450;
   color: oklch(var(--color-neutral-600-values) / 0.5);
 }
 
@@ -523,18 +531,18 @@ button#restart-test:focus {
   width: 80vw;
 }
 
-.results section > div {
+.results section>div {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.results div > h1 {
+.results div>h1 {
   padding: 0 1rem 0.25rem;
   color: var(--color-neutral-400);
 }
 
-.results div > a {
+.results div>a {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -547,25 +555,25 @@ button#restart-test:focus {
     color 0.15s ease-in-out;
 }
 
-.results div > a:hover {
+.results div>a:hover {
   background-color: oklch(var(--color-neutral-300-values) / 0.5);
   color: var(--color-neutral-800);
 }
 
-.results div > a:hover svg {
+.results div>a:hover svg {
   color: var(--color-neutral-800);
 }
 
-.results div > a:focus {
+.results div>a:focus {
   outline: var(--color-neutral-800) solid 1.5px;
   color: var(--color-neutral-800);
 }
 
-.results div > a:focus svg {
+.results div>a:focus svg {
   color: var(--color-neutral-800);
 }
 
-.results div > a svg {
+.results div>a svg {
   color: var(--color-neutral-400);
 }
 

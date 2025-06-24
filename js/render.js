@@ -44,6 +44,18 @@ export function renderNewCharacter(value, cursorState, words) {
   }
 }
 
+export function renderOnJumpAfterWrongTyping(cursorState, words) {
+  const previousWordLength = words.children[cursorState.wordIndex - 1].children.length;
+  const targetedWord = words.children[cursorState.wordIndex - 1];
+  const classes = (idx) => targetedWord.children[idx].classList;
+
+  for (let i = 0; i < previousWordLength; i++) {
+    if (!classes(i).contains("typed") || classes(i).contains("wrong")) {
+      targetedWord.classList.add("wrong", "left");
+    }
+  }
+}
+
 export function renderOnDeleteCharacter(cursorState, words) {
   const currentWord = words.children[cursorState.wordIndex];
   const letterElement = currentWord.children[cursorState.charIndex];

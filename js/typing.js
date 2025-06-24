@@ -86,7 +86,7 @@ renderCursor(caretElement, cursorState, words);
 
 // Logic when the test starts
 testState.startTest = () => {
-  displayCounter();
+  displayCounter(testState, counter);
 
   testState.timeoutId = setTimeout(() => {
     testState.endTime = performance.now();
